@@ -14,7 +14,18 @@ export function WhatsAppWidget() {
 
   const handleSend = (text: string) => {
     if (!text.trim()) return;
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+    
+    let formattedText = text;
+    
+    if (text === '🪵 Hacer un pedido') {
+      formattedText = `Hola *Leños Rellenos* 👋\n\nMe gustaría hacer un pedido nuevo. 🪵\n\n*Detalles de mi pedido:*\n- \n\n¡Quedo a la espera de su respuesta!`;
+    } else if (text === '❓ Consulta de producto') {
+      formattedText = `Hola 👋\n\nTengo una consulta sobre sus productos.\n\n*Mi duda es:* \n`;
+    } else if (text === '🛠️ Soporte técnico') {
+      formattedText = `Hola 🛠️\n\nNecesito ayuda de soporte técnico por favor.\n\n*Descripción del problema:* \n`;
+    }
+    
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(formattedText)}`;
     window.open(url, '_blank');
     setIsOpen(false);
     setMessage('');

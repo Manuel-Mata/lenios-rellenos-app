@@ -19,8 +19,8 @@ export function Header() {
             <User size={20} color="white" />
           </div>
           <div className="user-info">
-            <span className="user-name">Admin Familiar</span>
-            <span className="user-role text-muted">Administrador</span>
+            <span className="user-name">valeria guadalupe calvillo</span>
+            <span className="user-role text-muted">Familiar Administrativo</span>
           </div>
         </div>
       </div>

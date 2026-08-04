@@ -22,7 +22,7 @@ export function Dashboard() {
     <div className="dashboard">
       <div className="dashboard-header">
         <h2 className="page-title">Dashboard</h2>
-        <p className="text-muted">Bienvenido, Gabriel Barrón</p>
+        <p className="text-muted">Bienvenida, Valeria</p>
       </div>
 
       <div className="stats-grid">

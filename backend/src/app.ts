@@ -1,6 +1,7 @@
 import express, { Express } from 'express';
 import cors from 'cors';
 import productRoutes from './routes/product.routes';
+import orderRoutes from './routes/order.routes';
 
 export const createApp = (): Express => {
   const app = express();
@@ -16,6 +17,7 @@ export const createApp = (): Express => {
 
   // Rutas de API v1
   app.use('/api/v1/productos', productRoutes);
+  app.use('/api/v1/pedidos', orderRoutes);
 
   return app;
 };

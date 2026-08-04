@@ -1,0 +1,142 @@
+.products-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.products-table-container {
+  overflow-x: auto;
+  background-color: var(--color-surface);
+}
+
+.products-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.products-table th,
+.products-table td {
+  padding: 1rem 1.5rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.products-table th {
+  font-weight: 600;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.products-table tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.01);
+}
+
+.product-cell {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.product-image {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  box-shadow: var(--shadow-sm);
+}
+
+.product-name {
+  font-weight: 600;
+  margin-bottom: 0.125rem;
+}
+
+.product-desc {
+  font-size: 0.75rem;
+  max-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stock-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  height: 1.5rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: white;
+}
+
+.status-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+}
+
+.status-btn.active {
+  background-color: rgba(40, 167, 69, 0.1);
+  color: var(--color-success);
+  border-color: rgba(40, 167, 69, 0.2);
+}
+
+.status-btn.inactive {
+  background-color: rgba(220, 53, 69, 0.1);
+  color: var(--color-danger);
+  border-color: rgba(220, 53, 69, 0.2);
+}
+
+.status-btn:hover {
+  filter: brightness(0.95);
+}
+
+.actions-cell {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.action-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  border: none;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  color: var(--color-text-muted);
+}
+
+.action-btn.edit:hover {
+  background-color: rgba(209, 90, 45, 0.1);
+  color: var(--color-primary);
+}
+
+.action-btn.delete:hover {
+  background-color: rgba(220, 53, 69, 0.1);
+  color: var(--color-danger);
+}
+
+.text-right { text-align: right !important; }
+.text-center { text-align: center !important; }
+.py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+.py-8 { padding-top: 2rem; padding-bottom: 2rem; }

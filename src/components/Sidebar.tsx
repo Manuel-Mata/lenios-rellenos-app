@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Package, ShoppingCart, Users, Settings, LogOut } from 'lucide-react';
+import { Home, Package, ShoppingCart, ShoppingBag, Users, Settings, LogOut } from 'lucide-react';
 import './Sidebar.css';
 
 export function Sidebar() {
@@ -7,8 +7,9 @@ export function Sidebar() {
 
   const navItems = [
     { name: 'Dashboard', path: '/', icon: Home },
-    { name: 'Gestión de Productos', path: '/products', icon: Package },
-    { name: 'Control de Stock', path: '/stock', icon: ShoppingCart },
+    { name: 'Tienda (POS)', path: '/pos', icon: ShoppingBag },
+    { name: 'Mi Carrito', path: '/cart', icon: ShoppingCart },
+    { name: 'Productos y Stock', path: '/products', icon: Package },
     { name: 'Clientes', path: '/customers', icon: Users },
     { name: 'Configuración', path: '/settings', icon: Settings },
   ];

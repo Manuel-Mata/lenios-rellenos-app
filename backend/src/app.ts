@@ -2,6 +2,8 @@ import express, { Express } from 'express';
 import cors from 'cors';
 import productRoutes from './routes/product.routes';
 import orderRoutes from './routes/order.routes';
+import authRoutes from './routes/auth.routes';
+import adminProductRoutes from './routes/admin-product.routes';
 
 export const createApp = (): Express => {
   const app = express();
@@ -18,6 +20,8 @@ export const createApp = (): Express => {
   // Rutas de API v1
   app.use('/api/v1/productos', productRoutes);
   app.use('/api/v1/pedidos', orderRoutes);
+  app.use('/api/v1/auth', authRoutes);
+  app.use('/api/v1/admin/productos', adminProductRoutes);
 
   return app;
 };

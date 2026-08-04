@@ -17,7 +17,7 @@ export function Sidebar() {
     <aside className="sidebar bg-surface shadow-md">
       <div className="sidebar-header">
         <h1 className="logo-text text-primary">Leños Rellenos</h1>
-        <p className="subtitle text-muted">Panel de Administración</p>
+        <p className="subtitle text-muted">Administrador</p>
       </div>
 
       <nav className="sidebar-nav">

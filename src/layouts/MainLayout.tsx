@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { Sidebar } from '../components/Sidebar';
 import { Header } from '../components/Header';
+import { WhatsAppWidget } from '../components/WhatsAppWidget';
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -16,6 +17,7 @@ export function MainLayout({ children }: MainLayoutProps) {
           {children}
         </main>
       </div>
+      <WhatsAppWidget />
     </div>
   );
 }

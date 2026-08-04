@@ -12,14 +12,12 @@ interface Message {
 
 export function AiChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>(() => {
-    const saved = localStorage.getItem('ai_chat_history');
-    return saved ? JSON.parse(saved) : [{
-      id: '1',
-      role: 'assistant',
-      content: '¡Hola! Soy tu asistente virtual de Leños Rellenos. 🪵\n¿Cuál es tu sabor favorito o qué antojo tienes hoy?'
-    }];
-  });
+  const initialMessage: Message[] = [{
+    id: '1',
+    role: 'assistant',
+    content: '¡Hola! Soy tu asistente virtual de Leños Rellenos. 🪵\n¿Cuál es tu sabor favorito o qué antojo tienes hoy?'
+  }];
+  const [messages, setMessages] = useState<Message[]>(initialMessage);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   
@@ -27,7 +25,6 @@ export function AiChatWidget() {
   const addItem = useCartStore(state => state.addItem);
 
   useEffect(() => {
-    localStorage.setItem('ai_chat_history', JSON.stringify(messages));
     scrollToBottom();
   }, [messages, isOpen]);
 
@@ -121,7 +118,11 @@ export function AiChatWidget() {
               <span className="text-xs opacity-80">Asistente Virtual</span>
             </div>
           </div>
-          <button className="icon-btn text-white hover-bg-transparent" onClick={() => setIsOpen(false)}>
+          <button className="icon-btn text-white hover-bg-transparent" onClick={() => {
+            setIsOpen(false);
+            // Limpiar chat al cerrar
+            setTimeout(() => setMessages(initialMessage), 300);
+          }}>
             <X size={20} />
           </button>
         </div>

@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { MessageSquare, X, Send, Bot, User, ShoppingCart, Loader2 } from 'lucide-react';
+import { X, Send, Bot, ShoppingCart, Loader2 } from 'lucide-react';
 import { useCartStore } from '../store/useCartStore';
 import './AiChatWidget.css';
 
@@ -22,7 +22,7 @@ export function AiChatWidget() {
   const [isLoading, setIsLoading] = useState(false);
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const addItem = useCartStore(state => state.addItem);
+  const addItem = useCartStore((state) => state.addItem);
 
   useEffect(() => {
     scrollToBottom();
@@ -52,7 +52,7 @@ export function AiChatWidget() {
         .slice(-5)
         .map(m => m.content);
 
-      const response = await fetch('http://localhost:3001/api/v1/ia/recomendar', {
+      const response = await fetch('http://localhost:5000/api/v1/ia/recomendar', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -60,6 +60,7 @@ export function AiChatWidget() {
           userHistory
         })
       });
+
 
       if (!response.ok) {
         if (response.status === 429) throw new Error('Demasiadas solicitudes. Espera un momento.');

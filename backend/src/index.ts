@@ -1,21 +1,15 @@
 import 'dotenv/config';
-import express from 'express';
-import cors from 'cors';
-import { aiRoutes } from './routes/ai.routes';
+import app from './app';
 
-const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 5000;
 
-app.use(cors());
-app.use(express.json());
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => {
+    console.log(`🚀 Servidor ejecutándose en http://localhost:${PORT}`);
+    console.log(`📡 Catálogo de productos: http://localhost:${PORT}/api/v1/productos`);
+    console.log(`🤖 Asistente IA: http://localhost:${PORT}/api/v1/ia/recomendar`);
+  });
+}
 
-// Routes
-app.use('/api/v1/ia', aiRoutes);
+export default app;
 
-app.get('/health', (req, res) => {
-  res.json({ status: 'ok' });
-});
-
-app.listen(PORT, () => {
-  console.log(`Backend server running on http://localhost:${PORT}`);
-});

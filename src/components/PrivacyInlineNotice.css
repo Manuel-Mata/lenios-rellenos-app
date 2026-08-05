@@ -1,0 +1,36 @@
+/* PrivacyInlineNotice.css */
+
+.privacy-inline-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.65rem 0.9rem;
+  background: rgba(209, 90, 45, 0.07);
+  border: 1px solid rgba(209, 90, 45, 0.2);
+  border-radius: var(--radius-md);
+  margin-top: 0.75rem;
+}
+
+.privacy-inline-icon {
+  color: var(--color-primary);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.privacy-inline-text {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.privacy-inline-link {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.privacy-inline-link:hover {
+  color: var(--color-primary-hover);
+}

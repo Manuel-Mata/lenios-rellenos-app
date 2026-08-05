@@ -1,7 +1,11 @@
-import { Bell, User } from 'lucide-react';
+import { Bell, User, ShoppingCart } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { useCartStore, type CartItem } from '../store/useCartStore';
 import './Header.css';
 
 export function Header() {
+  const items = useCartStore((state) => state.items);
+  const cartItemCount = items.reduce((acc: number, item: CartItem) => acc + item.quantity, 0);
   return (
     <header className="header bg-surface shadow-sm">
       <div className="header-search">
@@ -9,6 +13,12 @@ export function Header() {
       </div>
       
       <div className="header-actions">
+        <Link to="/cart" className="icon-btn" style={{ marginRight: '8px' }}>
+          <ShoppingCart size={20} className="text-muted" />
+          {cartItemCount > 0 && (
+            <span className="badge bg-primary">{cartItemCount}</span>
+          )}
+        </Link>
         <button className="icon-btn">
           <Bell size={20} className="text-muted" />
           <span className="badge bg-primary">3</span>

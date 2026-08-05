@@ -1,15 +1,15 @@
-import dotenv from 'dotenv';
+import 'dotenv/config';
 import app from './app';
 
-dotenv.config();
-
-const port = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000;
 
 if (process.env.NODE_ENV !== 'test') {
-  app.listen(port, () => {
-    console.log(`🚀 Servidor ejecutándose en http://localhost:${port}`);
-    console.log(`📡 Catálogo de productos: http://localhost:${port}/api/v1/productos`);
+  app.listen(PORT, () => {
+    console.log(`🚀 Servidor ejecutándose en http://localhost:${PORT}`);
+    console.log(`📡 Catálogo de productos: http://localhost:${PORT}/api/v1/productos`);
+    console.log(`🤖 Asistente IA: http://localhost:${PORT}/api/v1/ia/recomendar`);
   });
 }
 
 export default app;
+

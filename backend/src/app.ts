@@ -4,6 +4,7 @@ import productRoutes from './routes/product.routes';
 import orderRoutes from './routes/order.routes';
 import authRoutes from './routes/auth.routes';
 import adminProductRoutes from './routes/admin-product.routes';
+import { aiRoutes } from './routes/ai.routes';
 
 export const createApp = (): Express => {
   const app = express();
@@ -22,9 +23,11 @@ export const createApp = (): Express => {
   app.use('/api/v1/pedidos', orderRoutes);
   app.use('/api/v1/auth', authRoutes);
   app.use('/api/v1/admin/productos', adminProductRoutes);
+  app.use('/api/v1/ia', aiRoutes);
 
   return app;
 };
 
 export const app = createApp();
 export default app;
+

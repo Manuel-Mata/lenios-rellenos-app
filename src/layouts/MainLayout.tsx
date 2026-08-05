@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { Sidebar } from '../components/Sidebar';
 import { Header } from '../components/Header';
 import { WhatsAppWidget } from '../components/WhatsAppWidget';
+import { AiChatWidget } from '../components/AiChatWidget';
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -18,6 +19,7 @@ export function MainLayout({ children }: MainLayoutProps) {
         </main>
       </div>
       <WhatsAppWidget />
+      <AiChatWidget />
     </div>
   );
 }

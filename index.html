@@ -1,10 +1,38 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
+
+    <!-- ─── Security Meta Tags ─────────────────────────────────────────────── -->
+    <!--
+      Content-Security-Policy como meta tag (segunda capa de defensa,
+      los headers HTTP del servidor siempre tienen prioridad).
+      Nota: frame-ancestors NO puede ser controlado por meta CSP, solo por header HTTP.
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline';
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+        font-src 'self' https://fonts.gstatic.com;
+        img-src 'self' data: blob: https:;
+        connect-src 'self' https://localhost:3001 http://localhost:3001 ws://localhost:*;
+        object-src 'none';
+      "
+    />
+    <!-- Controla la información enviada en el encabezado Referer -->
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <!-- ─── App Meta Tags ──────────────────────────────────────────────────── -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>temp-vite</title>
+    <meta name="description" content="Leños Rellenos — Sistema de administración y punto de venta" />
+
+    <!-- Evita que motores de búsqueda indexen el panel administrativo -->
+    <meta name="robots" content="noindex, nofollow" />
+
+    <title>Leños Rellenos — Admin</title>
   </head>
   <body>
     <div id="root"></div>

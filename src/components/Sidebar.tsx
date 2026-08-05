@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Package, ShoppingCart, ShoppingBag, Users, Settings, LogOut } from 'lucide-react';
+import { Home, Package, ShoppingCart, ShoppingBag, Users, Settings, LogOut, Shield } from 'lucide-react';
 import './Sidebar.css';
 
 export function Sidebar() {
@@ -12,6 +12,7 @@ export function Sidebar() {
     { name: 'Productos y Stock', path: '/products', icon: Package },
     { name: 'Clientes', path: '/customers', icon: Users },
     { name: 'Configuración', path: '/settings', icon: Settings },
+    { name: 'Aviso de Privacidad', path: '/privacidad', icon: Shield },
   ];
 
   return (

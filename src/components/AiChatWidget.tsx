@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { MessageSquare, X, Send, Bot, User, ShoppingCart, Loader2 } from 'lucide-react';
+import { X, Send, Bot, ShoppingCart, Loader2 } from 'lucide-react';
 import { useCartStore } from '../store/useCartStore';
 import './AiChatWidget.css';
 

@@ -112,7 +112,7 @@ describe('Product API Endpoints (/api/v1/productos)', () => {
     it('debe retornar 404 si el producto no existe', async () => {
       (prisma.product.findUnique as jest.Mock).mockResolvedValue(null as never);
 
-      const response = await request(app).get('/api/v1/productos/999');
+      const response = await request(app).get('/api/v1/productos/9999');
 
       expect(response.status).toBe(404);
       expect(response.body.error).toBe('Producto no encontrado');

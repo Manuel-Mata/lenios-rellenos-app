@@ -241,3 +241,139 @@
     height: 160px;
   }
 }
+
+/* Animaciones impresionantes */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideOutDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.quantity-controls.shake {
+  animation: shake 0.6s ease-in-out;
+}
+
+/* Toast Notifications */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.toast {
+  background: white;
+  border-radius: 8px;
+  padding: 14px 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  min-width: 300px;
+  animation: slideInUp 0.3s ease-out;
+  pointer-events: auto;
+  border-left: 4px solid #3b82f6;
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.toast-success {
+  border-left-color: #10b981;
+  background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);
+}
+
+.toast-success .toast-content {
+  color: #065f46;
+}
+
+.toast-error {
+  border-left-color: #ef4444;
+  background: linear-gradient(135deg, #fef2f2 0%, #ffffff 100%);
+}
+
+.toast-error .toast-content {
+  color: #7f1d1d;
+}
+
+.toast-info {
+  border-left-color: #f59e0b;
+  background: linear-gradient(135deg, #fffbeb 0%, #ffffff 100%);
+}
+
+.toast-info .toast-content {
+  color: #92400e;
+}
+
+.toast svg {
+  flex-shrink: 0;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.toast-success svg {
+  color: #10b981;
+}
+
+.toast-error svg {
+  color: #ef4444;
+}
+
+.toast-info svg {
+  color: #f59e0b;
+}
+
+/* Mejorar botones de cantidad */
+.qty-btn-minus, .qty-btn-plus {
+  position: relative;
+  overflow: hidden;
+}
+
+.qty-btn-minus::before, .qty-btn-plus::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease;
+  pointer-events: none;
+}
+
+.qty-btn-minus:active:not(:disabled)::before, .qty-btn-plus:active:not(:disabled)::before {
+  transform: scaleX(1);
+  transform-origin: right;
+}

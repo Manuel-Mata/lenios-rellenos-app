@@ -1,14 +1,54 @@
-import { ShoppingCart, Trash2, Minus, Plus, AlertCircle } from 'lucide-react';
+import { ShoppingCart, Trash2, Minus, Plus, AlertCircle, CheckCircle } from 'lucide-react';
 import { useCartStore, type CartItem } from '../store/useCartStore';
 import { Link } from 'react-router-dom';
 import './CartPage.css';
+import { useState } from 'react';
+
+interface Toast {
+  id: string;
+  message: string;
+  type: 'error' | 'success' | 'info';
+}
 
 export function CartPage() {
   const { items, updateQuantity, removeItem, clearCart, getSubtotal, getTotal } = useCartStore();
+  const [toasts, setToasts] = useState<Toast[]>([]);
+  const [shakeItemId, setShakeItemId] = useState<number | null>(null);
+
+  const showToast = (message: string, type: 'error' | 'success' | 'info' = 'info') => {
+    const id = Date.now().toString();
+    setToasts(prev => [...prev, { id, message, type }]);
+    setTimeout(() => {
+      setToasts(prev => prev.filter(t => t.id !== id));
+    }, 3000);
+  };
+
+  const handleDecrement = (itemId: number, currentQuantity: number) => {
+    if (currentQuantity <= 1) {
+      setShakeItemId(itemId);
+      showToast('No puedes tener menos de 1 artículo', 'error');
+      setTimeout(() => setShakeItemId(null), 600);
+      return;
+    }
+    updateQuantity(itemId, currentQuantity - 1);
+    showToast('Cantidad actualizada', 'success');
+  };
+
+  const handleIncrement = (itemId: number, currentQuantity: number, stock: number) => {
+    if (currentQuantity >= stock) {
+      setShakeItemId(itemId);
+      showToast(`Stock máximo disponible: ${stock}`, 'error');
+      setTimeout(() => setShakeItemId(null), 600);
+      return;
+    }
+    updateQuantity(itemId, currentQuantity + 1);
+    showToast('Cantidad actualizada', 'success');
+  };
 
   const handleClearCart = () => {
     if (window.confirm('¿Estás seguro de que quieres vaciar todo el carrito?')) {
       clearCart();
+      showToast('Carrito vaciado', 'success');
     }
   };
 
@@ -66,21 +106,25 @@ export function CartPage() {
                   </div>
                   
                   <div className="cart-item-actions">
-                    <div className="quantity-controls">
+                    <div className={`quantity-controls ${shakeItemId === item.id ? 'shake' : ''}`}>
                       <button 
-                        className="qty-btn"
-                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                        className="qty-btn qty-btn-minus"
+                        onClick={() => handleDecrement(item.id, item.quantity)}
                         disabled={item.quantity <= 1}
+                        aria-label={`Reducir cantidad de ${item.name}`}
+                        title="No puedes tener menos de 1 artículo"
                       >
                         <Minus size={16} />
                       </button>
                       
-                      <span className="qty-display">{item.quantity}</span>
+                      <span className="qty-display" data-testid={`qty-display-${item.id}`}>{item.quantity}</span>
                       
                       <button 
-                        className="qty-btn"
-                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                        className="qty-btn qty-btn-plus"
+                        onClick={() => handleIncrement(item.id, item.quantity, item.stock)}
                         disabled={item.quantity >= item.stock}
+                        aria-label={`Aumentar cantidad de ${item.name}`}
+                        title={item.quantity >= item.stock ? `Stock máximo: ${item.stock}` : 'Aumentar cantidad'}
                       >
                         <Plus size={16} />
                       </button>
@@ -133,6 +177,21 @@ export function CartPage() {
           </Link>
         </div>
       </div>
+
+      {toasts.length > 0 && (
+        <div className="toast-container">
+          {toasts.map(toast => (
+            <div key={toast.id} className={`toast toast-${toast.type}`}>
+              <div className="toast-content">
+                {toast.type === 'success' && <CheckCircle size={18} />}
+                {toast.type === 'error' && <AlertCircle size={18} />}
+                {toast.type === 'info' && <ShoppingCart size={18} />}
+                <span>{toast.message}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

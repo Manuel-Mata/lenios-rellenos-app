@@ -20,7 +20,7 @@ export function AiChatWidget() {
   const [messages, setMessages] = useState<Message[]>(initialMessage);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const addItem = useCartStore((state) => state.addItem);
 
@@ -46,6 +46,7 @@ export function AiChatWidget() {
     setIsLoading(true);
 
     try {
+
       // Extraer historial para contexto (solo últimos 5 mensajes)
       const userHistory = messages
         .filter(m => m.role === 'user')
@@ -103,7 +104,7 @@ export function AiChatWidget() {
 
   return (
     <>
-      <button 
+      <button
         className={`ai-widget-button ${isOpen ? 'hidden' : ''}`}
         onClick={() => setIsOpen(true)}
       >
@@ -119,6 +120,7 @@ export function AiChatWidget() {
               <span className="text-xs opacity-80">Asistente Virtual</span>
             </div>
           </div>
+
           <button className="icon-btn text-white hover-bg-transparent" onClick={() => {
             setIsOpen(false);
             // Limpiar chat al cerrar
@@ -126,6 +128,7 @@ export function AiChatWidget() {
           }}>
             <X size={20} />
           </button>
+
         </div>
 
         <div className="ai-chat-messages">
@@ -133,7 +136,7 @@ export function AiChatWidget() {
             <div key={msg.id} className={`message-wrapper ${msg.role}`}>
               <div className="message-bubble">
                 <p>{msg.content}</p>
-                
+
                 {msg.recommendations && msg.recommendations.length > 0 && (
                   <div className="recommendations-container">
                     {msg.recommendations.map((prod, idx) => (
@@ -144,7 +147,7 @@ export function AiChatWidget() {
                           <p className="text-muted text-xs">{prod.ai_description}</p>
                           <div className="rec-footer">
                             <span className="price font-bold">${prod.price.toFixed(2)}</span>
-                            <button 
+                            <button
                               className="btn btn-sm btn-primary"
                               onClick={() => handleAddToCart(prod)}
                             >
@@ -159,7 +162,7 @@ export function AiChatWidget() {
               </div>
             </div>
           ))}
-          
+
           {isLoading && (
             <div className="message-wrapper assistant">
               <div className="message-bubble loading">
@@ -172,7 +175,7 @@ export function AiChatWidget() {
         </div>
 
         <div className="ai-chat-input-area">
-          <textarea 
+          <textarea
             placeholder="Escribe tus antojos aquí..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
@@ -180,7 +183,7 @@ export function AiChatWidget() {
             disabled={isLoading}
             rows={2}
           />
-          <button 
+          <button
             className="btn btn-primary send-btn"
             onClick={handleSend}
             disabled={isLoading || !input.trim()}

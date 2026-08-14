@@ -120,6 +120,14 @@ describe('Admin Product Endpoints (/api/v1/admin/productos)', () => {
   });
 
   describe('GET /api/v1/admin/productos', () => {
+    it('debe retornar 401 si no se envía el header Authorization', async () => {
+      const response = await request(app)
+        .get('/api/v1/admin/productos');
+
+      expect(response.status).toBe(401);
+      expect(response.body.error).toContain('Acceso no autorizado');
+    });
+
     it('debe retornar todos los productos cuando está autenticado', async () => {
       (prisma.product.findMany as jest.Mock).mockResolvedValue([mockProduct] as never);
 

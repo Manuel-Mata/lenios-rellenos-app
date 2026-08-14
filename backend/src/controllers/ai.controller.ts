@@ -101,11 +101,11 @@ export const recommendProducts = async (req: Request, res: Response) => {
         model: 'claude-sonnet-4-5',
         max_tokens: 512,
         system: `Eres el asistente virtual de "Leños Rellenos", una taquería especializada en bolillos (leños) rellenos de carne. 
-Productos disponibles hoy:
-${PRODUCTS.filter(p => p.stock > 0).map(p => `- ${p.name} ($${p.price}) — ${p.description}`).join('\n')}
-${PRODUCTS.filter(p => p.stock === 0).map(p => `- ${p.name} — AGOTADO`).join('\n')}
+        Productos disponibles hoy:
+        ${PRODUCTS.filter(p => p.stock > 0).map(p => `- ${p.name} ($${p.price}) — ${p.description}`).join('\n')}
+        ${PRODUCTS.filter(p => p.stock === 0).map(p => `- ${p.name} — AGOTADO`).join('\n')}
 
-Responde en español, de forma amigable y conversacional. Máximo 3 oraciones. Sin listas ni formatos especiales.`,
+        Responde en español, de forma amigable y conversacional. Máximo 3 oraciones. Sin listas ni formatos especiales.`,
         messages: [{ role: 'user', content: preferencia }],
       });
 

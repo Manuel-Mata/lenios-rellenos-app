@@ -7,6 +7,7 @@
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
+    "postinstall": "npx prisma generate",
     "prisma:studio": "npx prisma studio",
     "prisma:migrate": "npx prisma migrate dev",
     "prisma:generate": "npx prisma generate",

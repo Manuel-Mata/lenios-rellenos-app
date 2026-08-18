@@ -11,7 +11,7 @@ Todas las versiones notables de este proyecto serán documentadas en este archiv
 
 ### Qué cambió
 - **[Añadido]** Configuración de variables de entorno (VITE_API_URL) dinámicas para que el Frontend consuma la API en producción.
-- **[Añadido]** Archivo `render.yaml` (Infrastructure as Code) para permitir un despliegue de toda la arquitectura (DB, API, Web) en 1 solo clic en la plataforma Render.
+- **[Añadido]** Archivo `vercel.json` y configuración Serverless para permitir un despliegue moderno del Backend en Vercel, junto con la base de datos PostgreSQL en Neon.tech.
 - **[Añadido]** Documentación de despliegue (`DOCUMENTACION_DESPLIEGUE.md`) requerida para la rúbrica de la materia, la cual especifica la justificación de la herramienta utilizada y el plan de rollback en caso de fallos.
 - **[Modificado]** Corrección de endpoint en el Chat de IA (`AiChatWidget.tsx`) para evitar "hardcoding" a localhost en producción.
 

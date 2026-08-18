@@ -25,7 +25,6 @@ services:
   - type: web
     name: lenios-frontend
     env: static
-    region: ohio
     buildCommand: npm install && npm run build
     staticPublishPath: dist
     envVars:

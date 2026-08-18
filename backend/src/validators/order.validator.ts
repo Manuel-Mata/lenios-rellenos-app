@@ -18,7 +18,7 @@ export const createOrderSchema = z.object({
   customerPhone: z
     .string({ message: 'El teléfono del cliente es obligatorio' })
     .trim()
-    .regex(/^\d{10}$/, 'El número de teléfono debe contener exactamente 10 dígitos numéricos'),
+    .regex(/^\d{10}$/, 'El teléfono debe tener 10 dígitos'),
   deliveryAddress: z
     .string({ message: 'La dirección de entrega es obligatoria' })
     .trim()

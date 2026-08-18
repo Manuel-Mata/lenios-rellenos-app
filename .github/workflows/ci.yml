@@ -1,0 +1,40 @@
+name: CI/CD Pruebas Automatizadas
+
+# Este pipeline se ejecutará cada vez que alguien haga un push a la rama 'main'
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  test-y-build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Descargar el código del repositorio
+      uses: actions/checkout@v4
+
+    - name: Configurar entorno Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    # === BACKEND ===
+    - name: Instalar dependencias del Backend
+      working-directory: ./backend
+      run: npm install
+
+    - name: Ejecutar pruebas unitarias del Backend (Jest)
+      working-directory: ./backend
+      run: npm run test
+
+    # === FRONTEND ===
+    - name: Instalar dependencias del Frontend
+      run: npm install
+
+    - name: Ejecutar pruebas del Frontend (Vitest)
+      run: npm run test:frontend
+
+    - name: Construir proyecto para Producción (Vite Build)
+      run: npm run build

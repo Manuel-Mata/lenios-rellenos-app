@@ -7,7 +7,7 @@ import './Pos.css';
 
 export function Pos() {
   const [products, setProducts] = useState<Product[]>([]);
-  const addItem = useCartStore(state => state.addItem);
+  const addItem = useCartStore((state) => state.addItem);
 
   useEffect(() => {
     const fetchProducts = async () => {

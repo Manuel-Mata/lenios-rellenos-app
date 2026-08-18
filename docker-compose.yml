@@ -1,16 +1,23 @@
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: lenios-postgres
+    container_name: postgres-lenios-app
     restart: always
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
       POSTGRES_DB: ${POSTGRES_DB:-lenios_db}
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
+  frontend:
+    build: .
+    container_name: frontend-lenios-app
+    ports:
+      - "8080:80"
+    restart: always
 
 volumes:
   postgres_data:

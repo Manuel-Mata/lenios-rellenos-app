@@ -1,5 +1,5 @@
 import { ShoppingCart, Trash2, Minus, Plus, AlertCircle } from 'lucide-react';
-import { useCartStore } from '../store/useCartStore';
+import { useCartStore, type CartItem } from '../store/useCartStore';
 import { Link } from 'react-router-dom';
 import { PrivacyInlineNotice } from '../components/PrivacyInlineNotice';
 import './CartPage.css';
@@ -44,7 +44,7 @@ export function CartPage() {
       <div className="cart-content">
         <div className="cart-items-container glass">
           <div className="cart-items-list">
-            {items.map((item) => (
+            {items.map((item: CartItem) => (
               <div key={item.id} className="cart-item">
                 <div className="cart-item-image">
                   <img src={item.imageUrl} alt={item.name} />
@@ -108,9 +108,10 @@ export function CartPage() {
           <h3>Resumen del Pedido</h3>
           
           <div className="summary-row">
-            <span className="text-muted">Subtotal ({items.reduce((acc, item) => acc + item.quantity, 0)} artículos)</span>
+            <span className="text-muted">Subtotal ({items.reduce((acc: number, item: CartItem) => acc + item.quantity, 0)} artículos)</span>
             <span>${getSubtotal().toFixed(2)}</span>
           </div>
+
           
           <div className="summary-row">
             <span className="text-muted">Descuento</span>

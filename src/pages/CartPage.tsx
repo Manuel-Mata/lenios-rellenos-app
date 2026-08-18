@@ -1,6 +1,7 @@
 import { ShoppingCart, Trash2, Minus, Plus, AlertCircle } from 'lucide-react';
 import { useCartStore, type CartItem } from '../store/useCartStore';
 import { Link } from 'react-router-dom';
+import { PrivacyInlineNotice } from '../components/PrivacyInlineNotice';
 import './CartPage.css';
 
 export function CartPage() {
@@ -124,6 +125,8 @@ export function CartPage() {
             <span className="total-price">${getTotal().toFixed(2)}</span>
           </div>
           
+          <PrivacyInlineNotice context="tus datos de entrega" />
+
           <button className="btn btn-primary btn-block checkout-btn mt-6">
             Proceder al Pago
           </button>
